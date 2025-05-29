@@ -1,0 +1,51 @@
+# EX:4B DYNAMIC PROGRAMMING – 2
+
+### DATE:
+
+## AIM:
+To find the longest string (or strings) that is a substring (or are substrings) of two strings.
+
+## ALGORITHM:
+
+1. Initialize a 2D array lookup of size (m+1) x (n+1) with zeros.
+2. Set maxLength = 0 and endingIndex = m.
+3. Traverse both strings using nested loops.
+4. If characters match, update lookup[i][j] = lookup[i-1][j-1] + 1.
+5. If the updated value is greater than maxLength, update maxLength and endingIndex.
+6. After processing, extract substring from X[endingIndex - maxLength : endingIndex].
+7. Return the extracted substring.
+
+## PROGRAM:
+
+```
+# Program to implement the longest common substring problem.
+# Developed by: SWATHI D
+# Register Number: 212222230154
+```
+```
+def LCS(X, Y, m, n):
+    maxLength = 0          
+    endingIndex = m        
+    lookup = [[0 for x in range(n + 1)] for y in range(m + 1)]
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if X[i - 1] == Y[j - 1]:
+                lookup[i][j] = lookup[i - 1][j - 1] + 1
+                if lookup[i][j] > maxLength:
+                    maxLength = lookup[i][j]
+                    endingIndex = i
+    return X[endingIndex - maxLength: endingIndex]
+if __name__ == '__main__':
+    X = input()
+    Y = input()
+    m = len(X)
+    n = len(Y)
+    print('The longest common substring is', LCS(X, Y, m, n))
+```
+
+## OUTPUT:
+
+![image](https://github.com/user-attachments/assets/7db63937-836c-4810-9833-0cab1825d3c5)
+
+## RESULT:
+Thus the program was executed successfully for finding the longest common substring.
